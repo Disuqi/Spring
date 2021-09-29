@@ -27,11 +27,11 @@ public class AccountController {
     }
 
     @PutMapping("/update")
-    public Account updateAccount(@PathParam("id") int id, @RequestBody Account account){
+    public Account updateAccount(@PathVariable long id, @RequestBody Account account){
         return this.service.updateAccount(id, account);
     }
     @DeleteMapping("/delete/{id}")
-    public Account removeAccount(@PathVariable int id){
+    public boolean removeAccount(@PathVariable long id){
         return this.service.removeAccount(id);
     }
     
