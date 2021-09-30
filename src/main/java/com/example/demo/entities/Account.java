@@ -1,11 +1,13 @@
 package com.example.demo.entities;
 import javax.persistence.*;
 
-@Entity
-public class Account {
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-    @Column (nullable = false, unique = true)
-    private String accountNumber;
+@Entity
+@Data
+@NoArgsConstructor
+public class Account {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,33 +16,12 @@ public class Account {
     @Column
     private String name;
 
+    @Column (nullable = false, unique = true)
+    private String accountNumber;
+    
     public Account(String accountNumber, String name){
         this.accountNumber = accountNumber;
         this.name = name;
     }
-
-    public String getAccountNumber(){
-        return this.accountNumber;
-    }
-
-    public long getId(){
-        return this.id;
-    }
-
-    public String getName(){
-        return this.name;
-    }
-    public void setAccountNumber(String accountNumber){
-        this.accountNumber = accountNumber;
-    }
-
-    public void setId(long id){
-        this.id = id;
-    }
-
-    public void setName(String name){
-        this.name= name;
-    }
-
     
 }

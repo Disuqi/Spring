@@ -1,8 +1,6 @@
 package com.example.demo.controllers;
 import java.util.List;
-
-import javax.websocket.server.PathParam;
-import com.example.demo.entities.Account;
+import com.example.demo.entities.*;
 import com.example.demo.services.AccountService;
 
 import org.springframework.web.bind.annotation.*;
@@ -17,17 +15,17 @@ public class AccountController {
 
 
     @PostMapping("/create")
-    public Account addAccount(@RequestBody Account account){
+    public AccountDTO addAccount(@RequestBody Account account){
         return this.service.addAccount(account);
     }
 
     @GetMapping("/getAll")
-    public List<Account> getAll() {
+    public List<AccountDTO> getAllAccounts() {
         return this.service.getAllAccounts();
     }
 
     @PutMapping("/update")
-    public Account updateAccount(@PathVariable long id, @RequestBody Account account){
+    public AccountDTO updateAccount(@PathVariable long id, @RequestBody Account account){
         return this.service.updateAccount(id, account);
     }
     @DeleteMapping("/delete/{id}")
