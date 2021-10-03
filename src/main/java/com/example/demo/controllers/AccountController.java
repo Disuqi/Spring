@@ -5,15 +5,13 @@ import java.util.List;
 import com.example.demo.entities.*;
 import com.example.demo.services.AccountService;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class AccountController {
+    @Autowired
     private AccountService service;
-
-    public AccountController(AccountService service){
-        this.service = service;
-    }
 
 
     @PostMapping("/create")
@@ -26,7 +24,12 @@ public class AccountController {
         return this.service.getAllAccounts();
     }
 
-    @PutMapping("/update")
+    @GetMapping("/get/{id}")
+    public AccountDTO getAccount(@PathVariable long id){
+        return this.service.getAccount(id);
+    }
+
+    @PutMapping("/update/{id}")
     public AccountDTO updateAccount(@PathVariable long id, @RequestBody Account account){
         return this.service.updateAccount(id, account);
     }
